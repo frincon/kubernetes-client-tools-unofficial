@@ -1,0 +1,5 @@
+.stack-work/
+kubernetes-client-tools-unofficial.cabal
+*~
+
+.vscode/

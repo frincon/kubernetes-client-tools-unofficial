@@ -1,0 +1,80 @@
+name:                kubernetes-client-tools-unofficial
+version:             0.1.0.0
+github:              "frincon/kubernetes-client-tools-unofficial"
+license:             Apache-2.0
+author:              "Fernando Rincon Martin"
+maintainer:          "f.rincon@protonmal.com"
+copyright:           "2019 Fernando Rincon Martin"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+synopsis:            Unofficial tools for using kubernetes with haskell
+category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/frincon/kubernetes-client-tools-unofficial#readme>
+
+ghc-options:
+- -Wall
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+  dependencies:
+  - aeson
+  - async
+  - bytestring
+  - directory
+  - filepath
+  - http-client
+  - http-mock
+  - http-types
+  - interpolate
+  - kubernetes-client
+  - kubernetes-client-core
+  - network
+  - placeholders
+  - random
+  - text
+  - time
+  - wai
+
+tests:
+  kubernetes-client-toos-unofficial-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - async
+    - kubernetes-client-tools-unofficial
+    - hspec
+    - http-types
+    - kubernetes-client
+    - kubernetes-client-core
+    - placeholders
+    - QuickCheck
+    - time
+
+executables:
+  leader-election-example:
+    main:                LeaderElectionExample.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - kubernetes-client
+    - kubernetes-client-core
+    - kubernetes-client-tools-unofficial
+    - text
+    - tls
