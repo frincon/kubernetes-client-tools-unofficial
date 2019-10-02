@@ -37,7 +37,7 @@ library:
   - http-types
   - interpolate
   - kubernetes-client
-  - kubernetes-client-core
+  - kubernetes-client-core >= 0.1.0.2
   - network
   - placeholders
   - random
@@ -59,7 +59,7 @@ tests:
     - hspec
     - http-types
     - kubernetes-client
-    - kubernetes-client-core
+    - kubernetes-client-core >= 0.1.0.2
     - placeholders
     - QuickCheck
     - time
@@ -74,7 +74,7 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - kubernetes-client
-    - kubernetes-client-core
+    - kubernetes-client-core >= 0.1.0.2
     - kubernetes-client-tools-unofficial
     - text
     - tls

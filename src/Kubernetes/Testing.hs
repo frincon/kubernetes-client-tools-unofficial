@@ -27,6 +27,8 @@ module Kubernetes.Testing
   , creationOk
   , onDeleteAction
   , deletionOk
+  , onReplaceAction
+  , replaceOk
   , onlyOnce
   , Action(..)
   ) where
@@ -65,6 +67,10 @@ data Action
     , name :: Name
     , deleteOptions :: Maybe V1DeleteOptions
     }
+  | ReplaceAction
+    { groupResourceVersion :: GroupResourceVersion
+    , object :: Value
+    }
   deriving (Show)
 
 data ReactionResult
@@ -86,6 +92,10 @@ onDeleteAction :: (Action -> Bool) -> (Action -> IO (Maybe ReactionResult)) -> R
 onDeleteAction cond resultFunc action@DeleteAction{} = if cond action then resultFunc action else notHandled
 onDeleteAction _ _ _ = notHandled
 
+onReplaceAction :: (Action -> Bool) -> (Action -> IO (Maybe ReactionResult)) -> ReactionFunc
+onReplaceAction cond resultFunc action@ReplaceAction{} = if cond action then resultFunc action else notHandled
+onReplaceAction _ _ _ = notHandled
+
 onlyOnce :: ReactionFunc -> IO ReactionFunc
 onlyOnce f = do
   alreadyUsed <- newIORef False
@@ -99,6 +109,7 @@ isGroupVersionResource :: GroupResourceVersion -> Action -> Bool
 isGroupVersionResource expectedGrv GetAction{ groupResourceVersion = actualGrv } = actualGrv /= expectedGrv
 isGroupVersionResource expectedGrv CreateAction{ groupResourceVersion = actualGrv } = actualGrv /= expectedGrv
 isGroupVersionResource expectedGrv DeleteAction{ groupResourceVersion = actualGrv } = actualGrv /= expectedGrv
+isGroupVersionResource expectedGrv ReplaceAction{ groupResourceVersion = actualGrv } = actualGrv /= expectedGrv
 
 buildReactionChain :: [ReactionFunc] -> ReactionFunc
 buildReactionChain (f:fs) action = do
@@ -131,6 +142,11 @@ deletionOk (DeleteAction _ _ _) = return $ Just $ ReturnObject $ toJSON $ mkV1St
   -- , v1StatusDetails = $notImplemented -- TODO Make the details
   }
 deletionOk _ = fail "Deletion ok expects a delete action"
+
+replaceOk :: Action -> IO (Maybe ReactionResult)
+-- TODO Maybe we need to change the resourceVersion
+replaceOk (ReplaceAction _ obj) = return $ Just $ ReturnObject obj
+replaceOk _ = fail "Replace ok expects a replace action"
 
 withMockedApi :: ReactionFunc -> ((NH.Manager, KubernetesClientConfig) -> IO a) -> IO a
 withMockedApi reactionFunc f = do
@@ -165,6 +181,10 @@ toAction req body = case requestMethod req of
       resourceName <- extractName req
       maybeOptions <- extractDeleteOptions body
       return $ DeleteAction grv resourceName maybeOptions
+    | method == methodPut -> do
+      grv <- extractGrv req
+      objectBody <- eitherDecode body
+      return $ ReplaceAction grv objectBody
     | otherwise -> fail [i|Method not expected #{method}|]
 
 extractDeleteOptions :: BCL.ByteString -> Either String (Maybe V1DeleteOptions)

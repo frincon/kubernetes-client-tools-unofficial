@@ -26,21 +26,21 @@ packages:
   original:
     hackage: http-mock-0.1.0.0
 - completed:
-    size: 1689671
+    size: 1689561
     subdir: kubernetes
-    url: https://github.com/frincon/haskell/archive/d1919b64cc47f70cf2278e09fc6deeb94df29e5d.tar.gz
+    url: https://github.com/frincon/haskell/archive/c4d73c2f1fa47e8ff068fe4487c73e0fd222a385.tar.gz
     cabal-file:
       size: 5850
       sha256: 245021b036b4d70e03153d74bdb746350a9e01fef333a248ce144100f7c0dbbe
     name: kubernetes-client-core
     version: 0.1.0.2
-    sha256: ff2eb551366f912cbaed913d941cfc23c12b43d04e5a3832491e3b02b9e72e41
+    sha256: 677375888c1726a0284426ece0af69fee2183286241cd73ad474ebca6d4c4cc7
     pantry-tree:
       size: 7455
       sha256: 2941856e0d786a3e5db0cc1052097d761cb1acddd24df6f6862ad3bba5dad5e3
   original:
     subdir: kubernetes
-    url: https://github.com/frincon/haskell/archive/d1919b64cc47f70cf2278e09fc6deeb94df29e5d.tar.gz
+    url: https://github.com/frincon/haskell/archive/c4d73c2f1fa47e8ff068fe4487c73e0fd222a385.tar.gz
 snapshots:
 - completed:
     size: 496697

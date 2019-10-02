@@ -84,8 +84,7 @@ spec = describe "LeaseLock" $ do
         reactionChain = 
           buildReactionChain 
             [ returnOnlyOnce
-            , onDeleteAction (isGroupVersionResource GRV.coordinationV1Lease) deletionOk 
-            , onCreateAction (isGroupVersionResource GRV.coordinationV1Lease) creationOk
+            , onReplaceAction (isGroupVersionResource GRV.coordinationV1Lease) replaceOk 
             ]
 
       withMockedApi reactionChain $ \(manager, config) -> do
