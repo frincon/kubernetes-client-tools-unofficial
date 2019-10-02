@@ -27,7 +27,7 @@ diffTimeToMicroseconds :: (Num a) => DiffTime -> a
 diffTimeToMicroseconds diffTime = fromInteger $ floor $ (diffTimeToPicoseconds diffTime) % picosecondsPerMicrosecond
 
 picosecondsPerSecond :: Integer
-picosecondsPerSecond = 10 ^ 12
+picosecondsPerSecond = 1000000000000
 
 picosecondsPerMicrosecond :: Integer
-picosecondsPerMicrosecond = 10 ^ 6
+picosecondsPerMicrosecond = 1000000

@@ -18,21 +18,15 @@ module Kubernetes.Tools.LeaderElection.LeaseLockSpec where
 
 import Test.Hspec
 
-import Development.Placeholders
-
 import Kubernetes.Tools.LeaderElection.LeaseLock
 import Kubernetes.OpenAPI.Core
-import Kubernetes.OpenAPI.Client
-import Kubernetes.OpenAPI.MimeTypes
 import Kubernetes.OpenAPI.Model
-import Kubernetes.OpenAPI.API.CoordinationV1
 
 import Kubernetes.Testing
 
 import qualified Kubernetes.GroupResourceVersion as GRV
 
 import Data.Maybe (isJust)
-import Network.HTTP.Types.Version
 import Data.Time.Clock (UTCTime(..), addUTCTime)
 import Data.Time.Calendar (fromGregorian)
 
@@ -47,7 +41,7 @@ spec = describe "LeaseLock" $ do
       let now = sampleTime
       
       let 
-        reactionChain action@GetAction{..} = if isGroupVersionResource GRV.coordinationV1Lease action 
+        reactionChain action@GetAction{} = if isGroupVersionResource GRV.coordinationV1Lease action 
           then returnObject $ mkLeaseValid name namespace identity1 now
           else notHandled
         reactionChain _ = return Nothing
@@ -91,6 +85,7 @@ spec = describe "LeaseLock" $ do
           result <- acquireLock (return now) manager config (LeaseLockConfig name namespace identity2 10)
           result `shouldSatisfy` isJust
 
+mkLeaseValid :: Name -> Namespace -> HolderIdentity -> UTCTime -> V1Lease
 mkLeaseValid name namespace holderIdentity validityInstant = 
   mkV1Lease 
     { v1LeaseMetadata = Just $ mkV1ObjectMeta 
@@ -106,5 +101,5 @@ mkLeaseValid name namespace holderIdentity validityInstant =
       }
     }
 
-
+sampleTime :: UTCTime
 sampleTime = UTCTime (fromGregorian 2019 9 15) 60

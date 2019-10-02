@@ -17,8 +17,6 @@ module Kubernetes.Tools.LeaderElectionSpec where
 import Test.Hspec
 import Test.MockIO
 
-import Development.Placeholders
-
 import Kubernetes.Tools.LeaderElection
 
 import Control.Concurrent (threadDelay)
@@ -30,8 +28,6 @@ import Test.QuickCheck (property)
 import Data.Maybe (isJust)
 import Data.Either (isLeft)
 
-import qualified Kubernetes.Tools.LeaderElection.LeaseLockSpec
-
 spec :: Spec
 spec = do
   describe "run'" $ do
@@ -41,7 +37,7 @@ spec = do
       run' (return ()) (\_ -> forever $ threadDelay 1000000) (return a) `shouldReturn` (Just a :: Maybe Int)
     it "When the work ends, the renew is cancelled" $ do
       (mocked, mock) <- buildMock1 runForEver
-      run' (return ()) mocked (return ()) 
+      _ <- run' (return ()) mocked (return ()) 
       result <- mock
       length result `shouldBe` 1
       snd (head result) `shouldSatisfy` isLeft

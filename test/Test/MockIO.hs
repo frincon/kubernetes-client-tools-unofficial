@@ -18,9 +18,6 @@ module Test.MockIO
   ( buildMock1
   ) where
 
-import Development.Placeholders
-
-import Test.Hspec
 import Control.Exception (SomeException, try, throw)
 import Data.IORef
 

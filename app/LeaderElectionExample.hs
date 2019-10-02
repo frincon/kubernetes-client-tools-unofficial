@@ -65,10 +65,10 @@ main = do
           putStrLn "I am the leader nowwwwww"
           threadDelay 1000000
     where 
-      leaderElectionConfig identity = LeaderElectionConfig 
+      leaderElectionConfig newIdentity = LeaderElectionConfig 
         { leaseDuration = 30
         , renewDeadline = 20
         , retryPeriod = 10
-        , identity = identity
+        , identity = newIdentity
         }
     
