@@ -100,8 +100,6 @@ acquireLock getCurrentTime manager config leaseLockConfig@LeaseLockConfig{..} = 
           }
         }
 
-    -- TODO Check what is the error in case Nothing comes in the spec
-    -- but this is not likely to heppen as it is required by the API
     checkForExistingLease :: MonadIO m => UTCTime -> V1Lease -> m (Maybe V1Lease)
     checkForExistingLease now lease@V1Lease{v1LeaseSpec = Just leaseSpec} = 
       if isValid now leaseSpec && isDifferentIdentity leaseSpec
