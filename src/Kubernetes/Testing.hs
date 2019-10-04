@@ -106,10 +106,10 @@ onlyOnce f = do
       else notHandled
 
 isGroupVersionResource :: GroupResourceVersion -> Action -> Bool
-isGroupVersionResource expectedGrv GetAction{ groupResourceVersion = actualGrv } = actualGrv /= expectedGrv
-isGroupVersionResource expectedGrv CreateAction{ groupResourceVersion = actualGrv } = actualGrv /= expectedGrv
-isGroupVersionResource expectedGrv DeleteAction{ groupResourceVersion = actualGrv } = actualGrv /= expectedGrv
-isGroupVersionResource expectedGrv ReplaceAction{ groupResourceVersion = actualGrv } = actualGrv /= expectedGrv
+isGroupVersionResource expectedGrv GetAction{ groupResourceVersion = actualGrv } = actualGrv == expectedGrv
+isGroupVersionResource expectedGrv CreateAction{ groupResourceVersion = actualGrv } = actualGrv == expectedGrv
+isGroupVersionResource expectedGrv DeleteAction{ groupResourceVersion = actualGrv } = actualGrv == expectedGrv
+isGroupVersionResource expectedGrv ReplaceAction{ groupResourceVersion = actualGrv } = actualGrv == expectedGrv
 
 buildReactionChain :: [ReactionFunc] -> ReactionFunc
 buildReactionChain (f:fs) action = do

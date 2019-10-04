@@ -24,4 +24,4 @@ data GroupResourceVersion = GroupResourceVersion
   deriving (Show, Eq)
 
 coordinationV1Lease :: GroupResourceVersion
-coordinationV1Lease = GroupResourceVersion "coordination.k8s.io" "v1" "lease"
+coordinationV1Lease = GroupResourceVersion "coordination.k8s.io" "v1" "leases"

@@ -71,10 +71,10 @@ acquireWithJitter :: DiffTime -> Double -> IO (Maybe a) -> IO a
 acquireWithJitter retryPeriod jitterFactor acquire =
   jitterUntil retryPeriod jitterFactor acquire
 
--- | Runs a provided IO when a leader eleaction lease is acquired
--- The IO provided will only starts when a lease can be locked using the provided config.
--- Note: in case of loosing the lock, the IO will be cancelled throwing an asynchronows exception to the thread.
-runDefaultLeaseLock :: LeaderElectionConfig -> Manager -> KubernetesClientConfig -> Namespace -> Name -> IO a -> IO a
+-- | Runs a provided IO when a leader election lease is acquired
+-- The IO provided will only starts when a lease can be acquired using the provided config.
+-- Note: in case of loosing the lock, the IO will be cancelled throwing an asynchronows exception to the thread
+runDefaultLeaseLock :: LeaderElectionConfig -> Manager -> KubernetesClientConfig -> Namespace -> Name -> IO a -> IO ()
 runDefaultLeaseLock LeaderElectionConfig{..} manager kubeConfig ns name work = do
   forever $ run' acquire renew work
   where
