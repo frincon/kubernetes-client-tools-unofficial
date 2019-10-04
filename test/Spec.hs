@@ -11,12 +11,4 @@
 -- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
-import Test.Hspec
-
-import qualified Kubernetes.Tools.LeaderElectionSpec
-import qualified Kubernetes.Tools.LeaderElection.LeaseLockSpec
-
-main :: IO ()
-main = hspec $ do
-  Kubernetes.Tools.LeaderElectionSpec.spec
-  Kubernetes.Tools.LeaderElection.LeaseLockSpec.spec
+{-# OPTIONS_GHC -F -pgmF hspec-discover #-}

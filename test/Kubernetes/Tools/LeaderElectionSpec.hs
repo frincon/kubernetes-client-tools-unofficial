@@ -37,7 +37,7 @@ spec = do
       run' (return ()) (\_ -> forever $ threadDelay 1000000) (return a) `shouldReturn` (Just a :: Maybe Int)
     it "When the work ends, the renew is cancelled" $ do
       (mocked, mock) <- buildMock1 runForEver
-      _ <- run' (return ()) mocked (return ()) 
+      _ <- run' (return ()) mocked (threadDelay 100 >> return ()) 
       result <- mock
       length result `shouldBe` 1
       snd (head result) `shouldSatisfy` isLeft

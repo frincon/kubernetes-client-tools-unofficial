@@ -21,7 +21,6 @@
 -- This module provides tools for do leader election based on Leases resources
 --
 -- Note that it requires a cluster that support V1Coordination API (v1.13.0)
-
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE RecordWildCards #-}

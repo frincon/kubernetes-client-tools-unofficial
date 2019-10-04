@@ -5,13 +5,6 @@
 
 packages:
 - completed:
-    hackage: kubernetes-client-0.1.0.1@sha256:a297dca3170bb38aa73fb796fce2eab2ca69631fea2b84fe56478dc1b1afa9ba,3531
-    pantry-tree:
-      size: 625
-      sha256: 005eb859b4ad747c767be3899d3953647558c878cbdb951b5841d7ce6cf34e1d
-  original:
-    hackage: kubernetes-client-0.1.0.1
-- completed:
     hackage: katip-0.8.3.0@sha256:8a67c0aec3ba1f0eabcfae443cb909e4cf9405e29bac99ccf1420f1f1bbda9c4,4097
     pantry-tree:
       size: 1140
@@ -26,21 +19,51 @@ packages:
   original:
     hackage: http-mock-0.1.0.0
 - completed:
-    size: 1689561
+    hackage: jsonpath-0.1.0.1@sha256:55718ac52b25cd8ce80fbdc9079a112344f032b056cfaf30737a29b6bd1a5c12,2377
+    pantry-tree:
+      size: 1097
+      sha256: 027749c943abaa6a78adc58e5abd4b3f42644c17c5fb7edf816557424a79448b
+  original:
+    hackage: jsonpath-0.1.0.1
+- completed:
+    hackage: oidc-client-0.4.0.1@sha256:d35d29351ea7db2aa0ecd4b4792b8bac4bf13f10c050e3c0cab0072b74acd996,3306
+    pantry-tree:
+      size: 1153
+      sha256: 8e5ea55cd0d5140c7595a7a2a6d6a039f29a61c2b339b0d850e062369f897206
+  original:
+    hackage: oidc-client-0.4.0.1
+- completed:
+    size: 1689509
     subdir: kubernetes
-    url: https://github.com/frincon/haskell/archive/c4d73c2f1fa47e8ff068fe4487c73e0fd222a385.tar.gz
+    url: https://github.com/kubernetes-client/haskell/archive/bab9bde4a5e454f5c0e1827483c62fb22fbccee7.tar.gz
     cabal-file:
       size: 5850
       sha256: 245021b036b4d70e03153d74bdb746350a9e01fef333a248ce144100f7c0dbbe
     name: kubernetes-client-core
     version: 0.1.0.2
-    sha256: 677375888c1726a0284426ece0af69fee2183286241cd73ad474ebca6d4c4cc7
+    sha256: c4fc2660fa2b679d3cc51e5aefc30987ec3f9a60509fe99784148e3e0e0e9425
     pantry-tree:
       size: 7455
       sha256: 2941856e0d786a3e5db0cc1052097d761cb1acddd24df6f6862ad3bba5dad5e3
   original:
     subdir: kubernetes
-    url: https://github.com/frincon/haskell/archive/c4d73c2f1fa47e8ff068fe4487c73e0fd222a385.tar.gz
+    url: https://github.com/kubernetes-client/haskell/archive/bab9bde4a5e454f5c0e1827483c62fb22fbccee7.tar.gz
+- completed:
+    size: 1689509
+    subdir: kubernetes-client
+    url: https://github.com/kubernetes-client/haskell/archive/bab9bde4a5e454f5c0e1827483c62fb22fbccee7.tar.gz
+    cabal-file:
+      size: 4595
+      sha256: 0c42ab5a0e765ee4b8727412abc48d5ea25452453b202b88b1da59f8621c7df0
+    name: kubernetes-client
+    version: 0.1.0.2
+    sha256: c4fc2660fa2b679d3cc51e5aefc30987ec3f9a60509fe99784148e3e0e0e9425
+    pantry-tree:
+      size: 1608
+      sha256: 50bb93e48ad4e354cec0db39b2af38b6ee24be1fd311358707bb99e8557fd4ca
+  original:
+    subdir: kubernetes-client
+    url: https://github.com/kubernetes-client/haskell/archive/bab9bde4a5e454f5c0e1827483c62fb22fbccee7.tar.gz
 snapshots:
 - completed:
     size: 496697

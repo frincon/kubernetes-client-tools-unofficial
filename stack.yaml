@@ -40,13 +40,14 @@ packages:
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a
 #
 extra-deps:
-- kubernetes-client-0.1.0.1
 - katip-0.8.3.0
 - http-mock-0.1.0.0
+- jsonpath-0.1.0.1
+- oidc-client-0.4.0.1
 # - kubernetes-client-core-0.1.0.1
-- github: frincon/haskell
-  commit: c4d73c2f1fa47e8ff068fe4487c73e0fd222a385
-  subdirs: [ kubernetes ]
+- github: kubernetes-client/haskell
+  commit: bab9bde4a5e454f5c0e1827483c62fb22fbccee7
+  subdirs: [ kubernetes, kubernetes-client ]
 
 # Override default flag values for local packages and extra-deps
 # flags: {}

@@ -30,6 +30,7 @@ module Kubernetes.Testing
   , onReplaceAction
   , replaceOk
   , onlyOnce
+  , nullReaction
   , Action(..)
   ) where
 
@@ -79,6 +80,9 @@ data ReactionResult
   deriving (Show)
 
 type ReactionFunc = Action -> IO (Maybe ReactionResult)
+
+nullReaction :: ReactionFunc
+nullReaction _ = return Nothing
 
 onGetAction :: (Action -> Bool) -> IO (Maybe ReactionResult) -> ReactionFunc
 onGetAction cond result action@GetAction{} = if cond action then result else notHandled

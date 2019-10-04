@@ -60,21 +60,42 @@ tests:
     - http-types
     - kubernetes-client
     - kubernetes-client-core >= 0.1.0.2
+    - microlens
     - placeholders
     - QuickCheck
+    - text
     - time
 
 executables:
   leader-election-example:
-    main:                LeaderElectionExample.hs
-    source-dirs:         app
+    main:                Main.hs
+    source-dirs:         app/leader-election-example
     ghc-options:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - kubernetes-client
+    - kubernetes-client >= 0.1.0.2
     - kubernetes-client-core >= 0.1.0.2
     - kubernetes-client-tools-unofficial
     - text
     - tls
+
+  operator-example:
+    main:                Main.hs
+    source-dirs:         app/operator-example
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - containers
+    - directory
+    - file-embed
+    - kubernetes-client >= 0.1.0.2
+    - kubernetes-client-core >= 0.1.0.2
+    - kubernetes-client-tools-unofficial
+    - stm
+    - text
+    - tls
+    - yaml

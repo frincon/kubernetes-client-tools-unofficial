@@ -25,3 +25,6 @@ data GroupResourceVersion = GroupResourceVersion
 
 coordinationV1Lease :: GroupResourceVersion
 coordinationV1Lease = GroupResourceVersion "coordination.k8s.io" "v1" "leases"
+
+apiextensionsV1beta1CustomResourceDefinition :: GroupResourceVersion
+apiextensionsV1beta1CustomResourceDefinition = GroupResourceVersion "apiextensions.k8s.io" "v1beta1" "customresourcedefinitions"
